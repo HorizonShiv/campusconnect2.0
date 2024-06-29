@@ -24,10 +24,10 @@
                         access the platform. Please keep this information secure and do not share it with anyone.</p>
 
                     <p><b>Username: {{ $email }}</b></p>
-                    <p><b>Password: {{ $password }}</b></p>
+                    <p><b>Temporary Password: {{ $password }}</b></p>
 
-                    <p>To log in, please visit <a href="https://campusconnect.stellarnova.in/authenticate/login">Campus
-                            Connect Login URL</a> and enter your credentials. If you encounter
+                    <p>To change Temporary password, please visit <a href="{{ $passwordUrl }}">click here</a> and enter
+                        your credentials. If you encounter
                         any
                         issues or have any questions, our support team is here to assist you.</p>
 

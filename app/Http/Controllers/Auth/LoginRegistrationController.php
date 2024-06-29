@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class LoginRegistrationController extends Controller
 {
@@ -36,7 +37,7 @@ class LoginRegistrationController extends Controller
             Auth::attempt($credentials);
             $request->session()->regenerate();
             return redirect()->route('authenticate-login')
-                ->withSuccess('You have successfully registered & logged in!');
+                ->withSuccess('You have successfully registered!!');
         } else {
             return redirect()->route('authenticate-login')
                 ->withErrors('This email already exists!');
@@ -92,8 +93,72 @@ class LoginRegistrationController extends Controller
         //     $routeName = 'auth-login-cover';
         // }
         return redirect()->route('authenticate-login')
-            ->withSuccess('You have logged out successfully!');;
+            ->withSuccess('You have logged out successfully!');
     }
+
+
+    public function authenticateWithEmail(String $email)
+    {
+        $UserEmail = base64_decode($email);
+        $otp = rand(100000, 999999);
+        Log::info("otp = " . $otp);
+        $User = User::where('email', '=', $UserEmail)->first();
+
+        if ($User) {
+            session()->regenerate();
+            User::where('email', '=', $User->email)->update(['otp' => $otp]);
+            Mail::send('mail.sendOtp', ['name' => $User->name ?? "Sir", 'OTP' => $otp], function ($message) use ($User) {
+                $message->to($User->email)
+                    ->subject('Otp - Campus Connect');
+            });
+            session()->put('email', $User->email);
+            session()->put('success', 'OTP sent successfully');
+
+
+            // return redirect()->action([LoginRegistrationController::class, 'redirectOTP'])->withSuccess('OTP sent successfully');
+            // return redirect()->route('redirectOTP')->withSuccess('OTP sent successfully');
+            $pageConfigs = ['myLayout' => 'blank'];
+            return view('authenticate.authenticate-otp', ['pageConfigs' => $pageConfigs]);
+        }
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $email = $request->session()->get('email');
+        $User = User::where('email', $email)->where('otp', $request->otp)->first();
+        if ($User) {
+            $request->session()->regenerate();
+            // return redirect()->route('dashboard-blank')
+            //     ->withSuccess('You have successfully logged in!');
+            session()->put('success', 'Verified');
+            $pageConfigs = ['myLayout' => 'blank'];
+            return view('authenticate.change-password', ['pageConfigs' => $pageConfigs]);
+        } else {
+            return back()->withErrors([
+                'email' => 'Invalid OTP',
+            ]);
+        }
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required'
+        ]);
+        $UserEmail = $request->session()->get('email');
+        $User = User::where('email', $UserEmail)->first();
+        if ($User) {
+            User::where('email', '=', $User->email)->update(['password' => Hash::make($request->password)]);
+            $request->session()->regenerate();
+            return redirect()->route('authenticate-login')
+                ->withSuccess('Changed Successfully Now you can login!');
+        }
+    }
+
+
+
+
+    // google login and registration functions
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -113,7 +178,7 @@ class LoginRegistrationController extends Controller
             if ($finduser) {
                 if ($finduser->is_active == 'Active') {
                     Auth::login($finduser);
-                    return redirect()->route('dashboard')
+                    return redirect()->route('dashboard-blank')
                         ->withSuccess('You have successfully Logged!!');
                 } else {
                     return redirect()->route('authenticate-login')

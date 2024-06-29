@@ -121,6 +121,7 @@
     </div>
 @endsection
 <script>
+    // toast-top-center
     function checkData() {
         var password = document.getElementById("password").value;
         var email = document.getElementById("email").value;

@@ -113,8 +113,10 @@ class UserController extends Controller
                 'platform' => 'Through Panel',
                 'is_active' => 'Active',
             ]);
+
             if ($User->save()) {
-                Mail::send('mail.registration', ['name' => $User->name ?? "Sir", 'password' => $password, 'email' => $User->email], function ($message) use ($User) {
+                $passwordUrl = route('authenticateWithEmail', ['email' => base64_encode($request->userEmail)]);
+                Mail::send('mail.registration', ['name' => $User->name ?? "Sir", 'password' => $password, 'email' => $User->email, 'passwordUrl' => $passwordUrl], function ($message) use ($User) {
                     $message->to($User->email)
                         ->subject('Registration in Campus Connect');
                 });

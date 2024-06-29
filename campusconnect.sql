@@ -1,0 +1,337 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Jun 29, 2024 at 07:26 PM
+-- Server version: 5.7.39
+-- PHP Version: 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `admin_stellarnova`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache`
+--
+
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_batches`
+--
+
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int(11) NOT NULL,
+  `pending_jobs` int(11) NOT NULL,
+  `failed_jobs` int(11) NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int(11) DEFAULT NULL,
+  `created_at` int(11) NOT NULL,
+  `finished_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '0001_01_01_000001_create_cache_table', 1),
+(3, '0001_01_01_000002_create_jobs_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('0dVG2vWZHNCO5bnbIwkSXNFGgP9Yn0XQ38gEkzIm', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoic3hlWUVicUwzTnI0Y0xheHRGQXVsUmNxdm84VEplRzhhMlFHOWM2YSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMS9hdXRoZW50aWNhdGUvcmVnaXN0ZXIiO31zOjU6InN0YXRlIjtzOjQwOiJwbXAxa2psa0lTZlowOWl4eFYwbWxUN3ljZ3dHVGdLczZ1dkNMbXlVIjt9', 1719652712),
+('1Af7PP8auCOHNwhgSPbtlsAQETsyokYzJlTKPLnX', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVHVNS01UYkhWTVZPUDd0T2NvY2c0YjFTZzZsbHZ1QXZBdVZmQ0V0cyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjE6e2k6MDtzOjY6ImVycm9ycyI7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo3NjoiaHR0cDovLzE3Mi4yMC4xMC4zOjgwMDAvYXV0aGVudGljYXRlL3ZlcmlmeS9jR0YwWld4emFHbDJNakF5TlVCbmJXRnBiQzVqYjIwPSI7fXM6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7czo2OiJlcnJvcnMiO086MzE6IklsbHVtaW5hdGVcU3VwcG9ydFxWaWV3RXJyb3JCYWciOjE6e3M6NzoiACoAYmFncyI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxNZXNzYWdlQmFnIjoyOntzOjExOiIAKgBtZXNzYWdlcyI7YToxOntzOjU6ImVtYWlsIjthOjE6e2k6MDtzOjExOiJJbnZhbGlkIE9UUCI7fX1zOjk6IgAqAGZvcm1hdCI7czo4OiI6bWVzc2FnZSI7fX19fQ==', 1719640200),
+('1vOiaOnjYIrvHQdeuu4p4nXEBq2KAgegFcjOkaUG', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoidXlMQk9IRkg0Skk2SEk4cE85bVg3aDlyVThlV25wWmJmMjROVVhqayI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjI6e2k6MDtzOjY6ImVycm9ycyI7aToxO3M6MTA6Il9vbGRfaW5wdXQiO319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvb3RwIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo2OiJlcnJvcnMiO086MzE6IklsbHVtaW5hdGVcU3VwcG9ydFxWaWV3RXJyb3JCYWciOjE6e3M6NzoiACoAYmFncyI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxNZXNzYWdlQmFnIjoyOntzOjExOiIAKgBtZXNzYWdlcyI7YToxOntzOjU6ImVtYWlsIjthOjE6e2k6MDtzOjU0OiJZb3VyIHByb3ZpZGVkIGNyZWRlbnRpYWxzIGRvIG5vdCBtYXRjaCBpbiBvdXIgcmVjb3Jkcy4iO319czo5OiIAKgBmb3JtYXQiO3M6ODoiOm1lc3NhZ2UiO319fXM6MTA6Il9vbGRfaW5wdXQiO2E6MDp7fX0=', 1719637960),
+('2sLj5tuFaVUHS8bz1J8hp2zSXY8hCdI84muEGiEh', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiWHBBc0JIVTBuVnBDT3BKT3Q4RzVPQW5idU5BZ2ZqMU1JZVBTd1F6SSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638798),
+('45943pfWGjWehePCzQadJxuBCABMxbycSVUTE1hO', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMnhTTEx2QmRYQ0lreEMyaWNuTHdNaFpSbEJoWjFxdU5pMVpZZnI1diI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638691),
+('4H6bmpP0ah4SgEHTPZKRENhkwtpLOOsSMrqgDlIL', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiWjN3R2h2cnFKaU5NdXdmV2t2SXQ2dWF1UEtMcEFuQmFNVE1wcTNjOCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvWTJ4aGMyaG9iM0pwYjI1QVoyMWhhV3d1WTI5dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo1OiJlbWFpbCI7czoyMToiY2xhc2hob3Jpb25AZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7fQ==', 1719642798),
+('4jcbX1iiA0eXtegOyjRoGg8YSXcQ9moxP9uRDLdz', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaUNaYTljT3p2cVIzekwxREJxUms0M1dwWnBvMVllNTUzWDNSNnhyMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638691),
+('683SqpBUHgHWiBmu3zg0cQ18SkYiXP9OHYkDKamR', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicVpDTG03OGVVUkFSNnFiQmI2WEFsUWduMmNiamVDclBRTjlFMUJKVSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638570),
+('6B03eYxx9gFcl4EIR0cSf27qsmNIlVVkoLnSX768', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ1dHVDhLbFB6YklGbEJTVXlHN1V6VUY3QnZtT3hYdzRrTXdoWm5JZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjIxOiJPVFAgc2VudCBzdWNjZXNzZnVsbHkiO30=', 1719640421),
+('7bYKJCv1y7MJFgaJiIHEwDbU3r4cULzu5WTjSnog', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSURKZ2pmWXRuSWhmWElFVWU4QkRqVHRVa2NCY0htb1JlMGpSdUNLMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638740),
+('7j0sLKR0nAPf6JN2QKFFSgJ7MjvwrAmtTis5T1qs', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV0Fyd1BBd3o5WURUazhVNTFManRNRVpYajJDZWF3YXR4TGk2cjczUyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638606),
+('7oF8KIHvqv1Oz45q6ak2QK97D8QdDVZFaxUGEk03', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNFZIUDFmTnNUQm5CQldBNFNlbk1oek95QlNONjEzMmR2djY0b1c0UyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjE6e2k6MDtzOjc6InN1Y2Nlc3MiO319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7fQ==', 1719637969),
+('87U6DtxlsF5Qw0KbuMJCZeX2akZd8PwDhpvFpXJ7', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaktrRkpCdXRMcWFmdmFjOWJYNTFqbFJOemx3cjRybHZPWXlHV0ZWSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS9sb2dpbiI7fX0=', 1719639083),
+('8OhH4ULpRXvFacMSzZdMQyRhVVg6xN9KAkxmqqmf', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY1EzSVEydG95M3phZGN2QUtTT2E3UGVEajhhSG9wSlkzMHJOM25IcCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS9sb2dpbiI7fX0=', 1719640405),
+('904FOEiVARgvCYb9cABCFgQ0gMsEJvuF9dBNgQsE', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVW1qRXJMSkdlWDNNcG1uMkZtOXVXckRSdWdxU1RYckRzOHI2VzhjZyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7fQ==', 1719638853),
+('9PaviGdXKqmaEc86WWi69gBLs1m4m1aBHm6FZUoK', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSGhqTWxEd3RqZkM4Qms1Tjg0ZWZUUklvRFVncUNBSWNXaUNWeU5vQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjg6IlZlcmlmaWVkIjt9', 1719640439),
+('bqt1YNXyjKurKGCf5vlVT26nGRR4NFa7uagfrhGs', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoia01PTWdOYW1XSE1BQXc0WFFaOHlMSk9aeEszeEFZQlZBMlNuNnBBWCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjE6e2k6MDtzOjY6ImVycm9ycyI7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo3NjoiaHR0cDovLzE3Mi4yMC4xMC4zOjgwMDAvYXV0aGVudGljYXRlL3ZlcmlmeS9jR0YwWld4emFHbDJNakF5TlVCbmJXRnBiQzVqYjIwPSI7fXM6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7czo2OiJlcnJvcnMiO086MzE6IklsbHVtaW5hdGVcU3VwcG9ydFxWaWV3RXJyb3JCYWciOjE6e3M6NzoiACoAYmFncyI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxNZXNzYWdlQmFnIjoyOntzOjExOiIAKgBtZXNzYWdlcyI7YToxOntzOjU6ImVtYWlsIjthOjE6e2k6MDtzOjExOiJJbnZhbGlkIE9UUCI7fX1zOjk6IgAqAGZvcm1hdCI7czo4OiI6bWVzc2FnZSI7fX19fQ==', 1719640186),
+('C6114bYMurmYSuQKm7AKgueSHLC83QYozoJfBG8T', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoia0RPbG1mR2prUlh4YWNoOTRKOUtBbFlLSWJONkRCVVJnV3ZJbnZvdSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638690),
+('C6Fzuvhdc5wzVpb0Jvey3jH7lw5xzRh2ZlIvfU9c', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiRVVuUmU4a2VzM1VndVByRzlnYW5zaE1MdkFicElKZ0tTNE91Y2RveiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjI6e2k6MDtzOjY6ImVycm9ycyI7aToxO3M6MTA6Il9vbGRfaW5wdXQiO319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvb3RwIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo2OiJlcnJvcnMiO086MzE6IklsbHVtaW5hdGVcU3VwcG9ydFxWaWV3RXJyb3JCYWciOjE6e3M6NzoiACoAYmFncyI7YToxOntzOjc6ImRlZmF1bHQiO086Mjk6IklsbHVtaW5hdGVcU3VwcG9ydFxNZXNzYWdlQmFnIjoyOntzOjExOiIAKgBtZXNzYWdlcyI7YToxOntzOjU6ImVtYWlsIjthOjE6e2k6MDtzOjU0OiJZb3VyIHByb3ZpZGVkIGNyZWRlbnRpYWxzIGRvIG5vdCBtYXRjaCBpbiBvdXIgcmVjb3Jkcy4iO319czo5OiIAKgBmb3JtYXQiO3M6ODoiOm1lc3NhZ2UiO319fXM6MTA6Il9vbGRfaW5wdXQiO2E6MDp7fX0=', 1719637965),
+('cVsHUm0wfqgLmB3d1WYSGP9SiAOtBn9Cyxr6LUot', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMWJld3VDT0txeHJqVlBEUTUxdnBtcU1IeVRIT2laNmZYQ1prdWNpdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638691),
+('d6hWX4l5RNz5acm3j8AWGCxmG3FLO1BnQ7TxjtPr', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiTXg5Tkx2Y3RFakkwV0hKdEs2MElBY0poUTJEY0hkUHNLdnNhZElWNiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvWTJ4aGMyaG9iM0pwYjI1QVoyMWhhV3d1WTI5dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo1OiJlbWFpbCI7czoyMToiY2xhc2hob3Jpb25AZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6ODoiVmVyaWZpZWQiO30=', 1719642828),
+('DG01a9jnnMWMyKB97gGcF7gxHswRH7oVXpkksUgw', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMnlnSEloajhvc3RFVlBxQmFoT0JPMjFCamVheGNHOEtZMmo0Mkp5QiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638700),
+('dsahjKo1q4byVrppj79lifiFDBr56TpIP9m4wYgt', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoid2t6bHpyNVdtQTVxcmlZOUNVeUlsbjVlY2Rya2F3Yk5SdTRobklGUCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL3VzZXJzL1N0dWRlbnQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1719642662),
+('FHy8LEmmem65eJJ3n4gWlOVruk9WWAC7cCGbu6k9', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiS3V3NEo2d2lXVUtsUkJMTzU1Z3U2OWdVSzZlamxNa1lnTm1XMTZ2ZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjIxOiJPVFAgc2VudCBzdWNjZXNzZnVsbHkiO30=', 1719639799),
+('FPd8ijBWRNzq3c8Y42IfaddudnRm8kIDm5wvDLvD', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiM0dJRURBdFU4aE9RNDBsNUFoc1J0YTJ2OHNYeWJ5VzBNbmROdmVmdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjE6e2k6MDtzOjc6InN1Y2Nlc3MiO319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7fQ==', 1719637790),
+('h79S0TaO1b26apg1Te9Lgv4haYLv1DIQwPisnXb7', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZjZmT1N2ZERMMWd5WEVnVzZMajI4c1NzTzhWcTZndGRsTnpLeWJiSyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638690),
+('jAFVEL1IbArJxoW3AAzd4MjpWh9nO3x3xVB0oVD2', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaTluYWlzWHRjTGo1ZERTNUJKRjZPUE9yUHVQOE4wUjNZODNKTDhLZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638691),
+('JCyNB0ltVdC3vC6NKqK36iZIZwdgNUMuR7vAWFrJ', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib0tjcGY0anlFT3oyQWhzNXB3Z3U2dm1DbFQ3WVRySHZPNVVWcm9jRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1719635965),
+('JQoqhuBVa6c6WhcPKx0hDzDrQf4PHFdYV5EapelP', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRTB2ZXNBSjRJRjBkUzlmRUZjWlZNU3J3M05jQ3ZCTGlLa0FSYkpieSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638742),
+('LenRNpVKNo13Ie38C9JUHTscuHckRATEGyi5eUO7', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVVFoOWpIQ2d5THRSVmVXaHh2MEY4SThVeHhTY3c5c0E3OGhRWjhnZyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS9sb2dpbiI7fXM6NToic3RhdGUiO3M6NDA6IndmN3RkUVZiVTdmYzJKcnQxQkVVMndsZU92OHJPNk5rMWVwWHFrRGwiO30=', 1719643034),
+('LHB1owkx3EkMcWOwHiRvIzojKyQV5ghIke1RSb9l', 3, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTzlLTzNQVWp5c2dHRGVsaDV6elhGbTJybmlaYVZRR1JjMmx6czJQTSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMzoiaHR0cDovLzEyNy4wLjAuMTo4MDAxL3VzZXJzL2FkbWluIjt9fQ==', 1719643071),
+('maWon2iT96Rf596U2oqBscoBdyuPgQlyfLzE0g2n', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiclV1Y1dISHQwTVVONno4TFRuZk1IVHU1d2NzTXJ1WmtuVWh4VWFlbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638701),
+('MDHIfBkXX9Fq0QBbnSw903JeJOiDoxZC8RfKOEK5', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaWxVeWZaOG9GMXpab3RxTkJUeUZzNXJVWTNKWllGUFM4U3M5S0tBWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvb3RwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1OiJlbWFpbCI7czoyMzoicGF0ZWxzaGl2MjAyNUBnbWFpbC5jb20iO30=', 1719638406),
+('mxueTpvbUZE8kMCZsJV975HIF1QUftHiX6nHL1ew', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieXRKMkJXZ2ZOb1U3U0trR3RTY2VqbmpPbWxsejRIOWpBM3hoV3NRQyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638740),
+('MyKK92yiBAptU3cDbsryTt3d0h9AaqXXnjJdfVIM', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZnUwYVA0NTU1WWZUVXJDRnJGV2hCRTVxQ0xJRTVGRE1oTTVQQVhZRSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638745),
+('NA7Vgqs2OJpApXswnuJX5rpPUgc8p7PFhka1oXc3', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiR3VGNTdPbWlKZ0tDdEtKbGNhQlF1b2NEUlQ1Y29NS0Y2bEFpVjhIRSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvWTJ4aGMyaG9iM0pwYjI1QVoyMWhhV3d1WTI5dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo1OiJlbWFpbCI7czoyMToiY2xhc2hob3Jpb25AZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6ODoiVmVyaWZpZWQiO30=', 1719642727),
+('nhXtJgqAFowiYB2VzKqt4JzIws1JVaVjkaBFcYIn', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoienlzdElqQTFLWjZaa3paTnhSUGhaYWFubTJXbkZxdlpFUVRnNkpiUSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjg6IlZlcmlmaWVkIjt9', 1719642499),
+('PMuyaWOCoXek1oqdgoPoxGp3Q897SN6QO8KJvmIG', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQ2w1c0xOb0lZWDhWWXhlU0sxbHptbmRwaHJaM0hzN1pic2QyeG54WCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719642520),
+('q9fg8Fvv4Q3i7ZqOrag1pkjVUKMIJMO5rwKIQ0HS', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiT1EzODFHRU54MGg0RWRweDVjbWtXb216UERYWXBMbVU2SUlzVHRTdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638690),
+('rNjWSAp5U5ybpoeMz9HuVwvD1LgiqtaPxN091sKj', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibDM0a0JNQmpXYVV4ajc1S1N5ZU9WYVAzS0x4MVRMa2hDc3BDSGdhViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638709),
+('RRZz6ZJ2tjKJu1h9vuXcbc4LrKF73s6ADf8emz3P', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiWjYxV3pqejNIajJvazNKc0FRTXIzZHRkWGpoblJWbzlYNEF6QkN6RiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638700),
+('RTu2JnQvupLOdE2rlkseTzlwyIM32zjdCPeNqZzt', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTkVZUHh0anlQQ0FmSHlGaTc1Y3dwNFB1Zk8zUFlzQVo3MHVpWW81cyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638587),
+('rx08QsJuqy2uzYZaJItQLskRPai8Jer245DMVPxC', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaFRBT0hLUlBVSllkeXRaTjEwYVV0ZHFoNGp2VGJqZGg4UER0dWRuQyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638691),
+('TFSfDOUtMKIqvnF9HwP0q1PbOnjYzBIyg36SjLod', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSmpLUDlvMHFGNjBCTDdiNHQ0dGtaN0hyekxUSDJYWURlbmdLTnJYSCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvb3RwIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7fQ==', 1719638515),
+('UEsTcFLNwJPmtkItlISDGlTxHj103lJbpU0fg8E7', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiWVpZMUlFcnpyMEFhSnZJRTZhZTMyNEhaa0ZRRnRoUGxjcmh1U3VTUCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvWTJ4aGMyaG9iM0pwYjI1QVoyMWhhV3d1WTI5dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo1OiJlbWFpbCI7czoyMToiY2xhc2hob3Jpb25AZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7fQ==', 1719642739),
+('V4MXt3ehORlddLCtZqBiQtePPG9PZRg6DsFuORJX', 3, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSzlqRFR6R2RYSWI1cTFsUVFmT0p6RnREQU92d0tGOGhiQkdnQW1FTiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMS91c2Vycy9hZG1pbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1719664717),
+('W3ai3BSyVIWPpN4axw0adOPfceiNqElkdXL7fhCU', 16, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiSjhnblVYdUVjaE96bGMxdExJSFp3dG85YXQyNFRRVUE1dVE3T1d5WCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNjtzOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjIxOiJPVFAgc2VudCBzdWNjZXNzZnVsbHkiO30=', 1719639050),
+('wLzCGMeFiDHVQh7bfgysSQCIbjabaUiLT611ZOIG', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoialpnNmpzcjNUM3paUXNmSDQ0V1FySnBHcndPaFZ6Y3NSQkRKekpPTSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjIxOiJPVFAgc2VudCBzdWNjZXNzZnVsbHkiO30=', 1719640200),
+('xJOokBT5y4UpDtIeogudyxXxO9oH2zd6ElKbjoTh', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibEdwRWR6aVRUdjd3M3d3czN3MzdUS2pzazJFajZzbnEzV2lLNmdBdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjIxOiJPVFAgc2VudCBzdWNjZXNzZnVsbHkiO30=', 1719642456),
+('YfT5pQZZEnzereePIzmvHkZVMs4CTLNxo9v2TbzR', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNUsybklYb3pYTWk2azJnQndUTkhtR2pmN09wZ1dGUkRxVk5YenJBdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjIxOiJPVFAgc2VudCBzdWNjZXNzZnVsbHkiO30=', 1719642484),
+('YjOU2xbAVMhaXIU50eoX4PZ3IwWmqpnZDQR7jYJy', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNGRLMlpibmxmT0l1MmJTSGphU3J5WlZyNmJhTmowUHJCU2NZMHgyaiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToiZW1haWwiO3M6MjM6InBhdGVsc2hpdjIwMjVAZ21haWwuY29tIjt9', 1719638646),
+('ylTGpFr4SDwCl3JFT8nPfMOOwAzPVfRYEh2lyN9d', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo4OntzOjY6Il90b2tlbiI7czo0MDoiMWxnN25NZ3Q3OGNjWW1qV0dFTUtPbk1RVGdObnpjQThhNUwxNUJDMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjI6e2k6MDtzOjEwOiJfb2xkX2lucHV0IjtpOjE7czo2OiJlcnJvcnMiO319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvWTJ4aGMyaG9iM0pwYjI1QVoyMWhhV3d1WTI5dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo1OiJlbWFpbCI7czoyMToiY2xhc2hob3Jpb25AZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6ODoiVmVyaWZpZWQiO3M6MTA6Il9vbGRfaW5wdXQiO2E6MTp7czo2OiJfdG9rZW4iO3M6NDA6IjFsZzduTWd0NzhjY1ltaldHRU1LT25NUVRnTm56Y0E4YTVMMTVCQzMiO31zOjY6ImVycm9ycyI7TzozMToiSWxsdW1pbmF0ZVxTdXBwb3J0XFZpZXdFcnJvckJhZyI6MTp7czo3OiIAKgBiYWdzIjthOjE6e3M6NzoiZGVmYXVsdCI7TzoyOToiSWxsdW1pbmF0ZVxTdXBwb3J0XE1lc3NhZ2VCYWciOjI6e3M6MTE6IgAqAG1lc3NhZ2VzIjthOjE6e3M6ODoicGFzc3dvcmQiO2E6MTp7aTowO3M6NDc6IlRoZSBwYXNzd29yZCBmaWVsZCBjb25maXJtYXRpb24gZG9lcyBub3QgbWF0Y2guIjt9fXM6OToiACoAZm9ybWF0IjtzOjg6IjptZXNzYWdlIjt9fX19', 1719642762),
+('YpIZprsJEogDCkeToLH45rxOZxtBsFnc77FYqmKc', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUkZ0d1lxSlFqanpzcnUxbHRqMnFYcGRPWUU5anJLSGtxZTBJQzY5ayI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjg6IlZlcmlmaWVkIjt9', 1719640164),
+('Z9CUUI8waNr3x689d8xz7k6H5EqzTRh8QuFjeQYf', NULL, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRFJRbUNCanMwS3RxczJZYnlTME5ZSTIySVZTMFVvcXNDUnNlTWFDRSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzY6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvY0dGMFpXeHphR2wyTWpBeU5VQm5iV0ZwYkM1amIyMD0iO31zOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7czo3OiJzdWNjZXNzIjtzOjg6IlZlcmlmaWVkIjt9', 1719640222),
+('zgAggmAaH1YvB6r1WpeMn5rruhnGU6Cw8Mi3TLa5', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiaVVwUmk2dWRhUVQ4OWVVV3pCZ0o0U0w1Y2NkYXA2cU5lZDZ2RWh2ZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzI6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvWTJ4aGMyaG9iM0pwYjI1QVoyMWhhV3d1WTI5dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo1OiJlbWFpbCI7czoyMToiY2xhc2hob3Jpb25AZ21haWwuY29tIjtzOjc6InN1Y2Nlc3MiO3M6MjE6Ik9UUCBzZW50IHN1Y2Nlc3NmdWxseSI7fQ==', 1719642677),
+('zIh3RUxBPrjscEzT2ARUU2L9yOfIQwXWVPtYebqM', 3, '172.20.10.3', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaVg4TzBrTVg0TGhVbDB3R3FVcUM0dVBqNTFmSUI2SXh3elhQOWJXQyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xNzIuMjAuMTAuMzo4MDAwL2F1dGhlbnRpY2F0ZS92ZXJpZnkvb3RwIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjU6ImVtYWlsIjtzOjIzOiJwYXRlbHNoaXYyMDI1QGdtYWlsLmNvbSI7fQ==', 1719638394);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `google_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` enum('Super Admin','Admin','Faculty','Student','Student Department') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Student',
+  `platform` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` enum('Active','Inactive','Pending') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '''Active'',''Inactive'',''Pending''',
+  `otp` varchar(355) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `google_id`, `password`, `role`, `platform`, `is_active`, `otp`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Krishna harsura', 'krishnaharsura@gmail.com', NULL, '116771781532437895734', '$2y$12$FsosgMcGpbhwiXHZJ2ULSeHk2F97m6n84gAvY7GOSnoeZUZY1z4qG', 'Student', 'Google', 'Active', NULL, NULL, '2024-06-28 14:55:04', '2024-06-28 14:55:04'),
+(3, 'Horizon', 'horizon@gmail.com', NULL, NULL, '$2y$12$KCF1Fd2uqiJC1dV9/RdkQeH98EYrHy/tZixtbNYFDqhZkFHSZTSO2', 'Super Admin', NULL, 'Active', NULL, NULL, '2024-06-28 11:19:40', '2024-06-28 11:19:40'),
+(4, 'Stellar', 'stellar@gmail.com', NULL, NULL, '$2y$12$VXVG/5wQqT8Gi9sSYrJhdOIVCE9Vbx3CW5cmhFmio2QpxiFtPsWAO', 'Admin', 'Through Panel', 'Active', NULL, NULL, '2024-06-28 12:37:41', '2024-06-28 18:15:05'),
+(5, 'SHIV', 'shiv@gmail.com', NULL, NULL, '$2y$12$LP9whN19BRAtaEofh7Mic.YkrBcS3gMtTt9tmtFYu2JWfkVMkWdQi', 'Admin', 'Through Panel', 'Active', NULL, NULL, '2024-06-28 17:46:15', '2024-06-28 17:46:15'),
+(17, 'Shiv Patel', 'patelshiv2025@gmail.com', NULL, NULL, '$2y$12$ifAz7HXOxkd/SktO//u7zeNr6qPiAdVezTT1AS07B.9TXO36qjjf6', 'Admin', 'Through Panel', 'Active', '166127', NULL, '2024-06-29 06:26:47', '2024-06-29 06:28:40'),
+(18, 'clashhorion', 'clashhorion@gmail.com', NULL, NULL, '$2y$12$Kx4GrhcJv4/fQrz18dh36OHUT1Qe5/p8RK0mbDRNzQ0YF/QkKbWu6', 'Student', 'Through Panel', 'Active', '293948', NULL, '2024-06-29 06:30:57', '2024-06-29 06:33:54');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indexes for table `job_batches`
+--
+ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -25,6 +25,10 @@ Route::controller(LoginRegistrationController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout');
     Route::get('auth/google', 'redirectToGoogle')->name('redirectToGoogle');
     Route::get('auth/google/callback', 'handleGoogleCallback')->name('handleGoogleCallback');
+    Route::get('authenticate/verify/{email}', 'authenticateWithEmail')->name('authenticateWithEmail');
+    Route::get('authenticate/verify/otp', 'redirectOTP')->name('redirectOTP');
+    Route::post('/verifyOtp', 'verifyOtp')->name('verifyOtp');
+    Route::post('/changePassword', 'changePassword')->name('changePassword');
 });
 
 Route::get('/authenticate/login', [AuthLogin::class, 'login'])->name('authenticate-login');

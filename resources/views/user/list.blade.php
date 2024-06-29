@@ -21,6 +21,8 @@
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src="{{ asset('assets/js/form-layouts.js') }}"></script>
+
+
 @endsection
 
 @section('page-script')
@@ -173,8 +175,8 @@
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body mx-0 flex-grow-0 pt-0 h-100">
-                <form method="post" action="{{ route('users.store') }}" enctype="multipart/form-data"
-                    class="add-new-user pt-0" id="addNewUserForm" onsubmit="checkData()">
+                <form method="post" action="{{ route('users.store') }}" onsubmit="return checkData()"
+                    enctype="multipart/form-data" class="add-new-user pt-0" id="addNewUserForm">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label" for="add-user-fullname">Full Name</label>
@@ -205,8 +207,9 @@
         </div>
     </div>
 @endsection
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+<script src="{{ asset('assets/custom/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('assets/custom/jquery.dataTables.js') }}"></script>
 <script>
     $(document).ready(function() {
         getUsers();
@@ -446,5 +449,18 @@
                 });
             }
         });
+    }
+
+    function checkData() {
+        var fullname = document.getElementById("add-user-fullname").value;
+        var email = document.getElementById("add-user-email").value;
+        if (fullname == "" || email == "") {
+            toastr.options.positionClass = 'toast-top-center';
+            toastr.options.preventDuplicates = true;
+            toastr.error('Enter the the datils');
+            return false;
+        } else {
+            return true;
+        }
     }
 </script>
