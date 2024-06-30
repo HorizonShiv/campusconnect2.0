@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('avatar')->nullable();
             $table->enum('role', ['Super Admin', 'Admin', 'Faculty', 'Student', 'Student Department'])->default('Student');
             $table->string('platform');
-            // $table->integer('is_active')->default(0); // 0 - deactive,
+            $table->string('google_id')->nullable();
+            $table->string('github_id')->nullable();
             $table->enum('is_active', ['Active', 'Inactive', 'Pending'])->default('Pending');
+            $table->string('otp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

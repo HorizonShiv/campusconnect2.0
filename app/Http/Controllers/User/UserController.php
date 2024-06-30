@@ -44,9 +44,25 @@ class UserController extends Controller
             $CreatedDate = Helpers::formateDateLong($User->created_at);
 
             $random = rand(0, 6);
-            $avatar = substr($User->name, 0, 2);
 
-            $UserInfo = ' <div class="d-flex justify-content-start align-items-center user-name">
+
+            if (!empty($User->avatar)) {
+                $UserInfo = '<div class="d-flex justify-content-start align-items-center user-name">
+                                <div class="avatar-wrapper">
+                                    <div class="avatar avatar-sm me-4">
+                                        <img src="' . $User->avatar . '" alt="Avatar" class="rounded-circle">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <a href="app-user-view-account.html" class="text-heading text-truncate">
+                                        <span class="fw-medium">' . $User->name . '</span>
+                                    </a>
+                                    <small>' . $User->email . '</small>
+                                </div>
+                            </div>';
+            } else {
+                $avatar = substr($User->name, 0, 2);
+                $UserInfo = ' <div class="d-flex justify-content-start align-items-center user-name">
                             <div class="avatar-wrapper">
                                 <div class="avatar me-3"><span class="avatar-initial rounded-circle bg-label-' . $colorArray[$random] . '">' . $avatar . '</span></div>
                             </div>
@@ -54,7 +70,7 @@ class UserController extends Controller
                                     class="text-body text-truncate"><span class="fw-medium">' . $User->name . '</span></a><small
                                     class="text-muted">' . $User->email . '</small></div>
                         </div>';
-
+            }
 
             $UserLoginPlateFrom = '<span class="badge rounded bg-label-primary">' . ($User->platform ?? 'Through Panel') . '</span>';
 

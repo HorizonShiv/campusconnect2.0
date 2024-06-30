@@ -23,12 +23,20 @@ Route::controller(LoginRegistrationController::class)->group(function () {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::post('/store', 'store')->name('store');
     Route::post('/logout', 'logout')->name('logout');
-    Route::get('auth/google', 'redirectToGoogle')->name('redirectToGoogle');
-    Route::get('auth/google/callback', 'handleGoogleCallback')->name('handleGoogleCallback');
+
+    //OTP Verification Routes
     Route::get('authenticate/verify/{email}', 'authenticateWithEmail')->name('authenticateWithEmail');
     Route::get('authenticate/verify/otp', 'redirectOTP')->name('redirectOTP');
     Route::post('/verifyOtp', 'verifyOtp')->name('verifyOtp');
     Route::post('/changePassword', 'changePassword')->name('changePassword');
+
+    //Google Auth Routes
+    Route::get('auth/google', 'redirectToGoogle')->name('redirectToGoogle');
+    Route::get('auth/google/callback', 'handleGoogleCallback')->name('handleGoogleCallback');
+
+    //GitHub Auth Routes
+    Route::get('auth/github', 'redirectToGitHub')->name('redirectToGitHub');
+    Route::get('auth/github/callback', 'handleGitHubCallback')->name('handleGitHubCallback');
 });
 
 Route::get('/authenticate/login', [AuthLogin::class, 'login'])->name('authenticate-login');

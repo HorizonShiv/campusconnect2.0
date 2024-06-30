@@ -164,16 +164,11 @@ class LoginRegistrationController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    /**
-     * Obtain the user information from Google.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function handleGoogleCallback()
     {
         try {
             $user = Socialite::driver('google')->user();
-            $finduser = User::where('google_id', $user->id)->first();
+            $finduser = User::where('google_id', $user->id)->orWhere('email', $user->email)->first();
 
             if ($finduser) {
                 if ($finduser->is_active == 'Active') {
@@ -189,6 +184,7 @@ class LoginRegistrationController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
+                    'avatar' => $user->avatar,
                     'role' => 'Student',
                     'platform' => 'Google',
                     'is_active' => 'Pending',
@@ -200,6 +196,48 @@ class LoginRegistrationController extends Controller
             }
         } catch (Exceptions $e) {
             return redirect('auth/google');
+        }
+    }
+
+
+    // Github login and registration functions
+    public function redirectToGitHub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleGitHubCallback()
+    {
+        try {
+            $user = Socialite::driver('github')->user();
+            $finduser = User::where('github_id', $user->id)->orWhere('email', $user->email)->first();
+
+            if ($finduser) {
+                if ($finduser->is_active == 'Active') {
+                    Auth::login($finduser);
+                    return redirect()->route('dashboard-blank')
+                        ->withSuccess('You have successfully Logged!!');
+                } else {
+                    return redirect()->route('authenticate-login')
+                        ->withErrors('You are still not approved as a user!!');
+                }
+            } else {
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'github_id' => $user->id,
+                    'avatar' => $user->avatar,
+                    'role' => 'Student',
+                    'platform' => 'Github',
+                    'is_active' => 'Pending',
+                    'password' => encrypt('my-github')
+                ]);
+
+                return redirect()->route('authenticate-login')
+                    ->withSuccess('You have successfully registered wait for the appoval!');
+            }
+        } catch (Exceptions $e) {
+            return redirect('auth/github');
         }
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 28, 2024 at 07:42 PM
+-- Generation Time: Jun 30, 2024 at 05:41 PM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -149,7 +149,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('yboa16x2gArDo0DWjGjih9MtVZmuyfDgoL41IMv5', 3, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidlZDOEpacUhkRHlDQUlRcjVQRDRKVWJ6STFlckloVTJIUGt0ZmZKQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC91c2Vycy9BZG1pbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1719602769);
+('5kc9nrOTbvx0mpoueZKHnisgwCMkHRGmB23kTs1g', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWVVydHE1OG5JenBoZktqck9GRERwWENzT0lrNFNZR0Y2U2xuZDNFZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMS9hdXRoZW50aWNhdGUvbG9naW4iO319', 1719768216),
+('7bmyqla8DEw9aGjgAnxQWnhgfKTgpHrhwnNhJPvH', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWFlxZ0FrWllGZDhiVVhtblYzTnpTd2hpeUFGcWVmRWZUUTM4VjZyTCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo1OiJzdGF0ZSI7czo0MDoiSVlDV0xaa2ZDUlBKYXlnUGtDYWRGN2x5ZXdJTVRBaTNmMWhyUkVOTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMS9hdXRoL2dvb2dsZSI7fX0=', 1719762016),
+('A1SPHg2hiKAEudqTmvtCBLPRLDXAw9Q6J5LicUwY', 3, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNXRIM1VBZ3h3YXpvMk00SHVORHZHSGpaMVZjM2hkelI0aVU1WWFpViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMS91c2Vycy9zdHVkZW50Ijt9czo1OiJzdGF0ZSI7czo0MDoiUXgyQk1IS3pvQVBNN2NKeDlIU1o5d0lzZ2xKemRValhSZTVqM3FydiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1719768194);
 
 -- --------------------------------------------------------
 
@@ -162,11 +164,14 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `google_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `github_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` enum('Super Admin','Admin','Faculty','Student','Student Department') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Student',
   `platform` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` enum('Active','Inactive','Pending') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '''Active'',''Inactive'',''Pending''',
+  `otp` varchar(355) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -176,13 +181,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `google_id`, `password`, `role`, `platform`, `is_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Shiv Patel', 'clashhorion@gmail.com', NULL, '112642322265059866096', '$2y$12$WYnnlW38f.fjvpIeLdrVOePrwrbnzXMpQrcE7Ps53QJUN7.QEJh4W', 'Student', 'Google', 'Inactive', NULL, '2024-06-28 14:54:45', '2024-06-28 18:33:11'),
-(2, 'Krishna harsura', 'krishnaharsura@gmail.com', NULL, '116771781532437895734', '$2y$12$FsosgMcGpbhwiXHZJ2ULSeHk2F97m6n84gAvY7GOSnoeZUZY1z4qG', 'Student', 'Google', 'Active', NULL, '2024-06-28 14:55:04', '2024-06-28 14:55:04'),
-(3, 'Horizon', 'horizon@gmail.com', NULL, NULL, '$2y$12$KCF1Fd2uqiJC1dV9/RdkQeH98EYrHy/tZixtbNYFDqhZkFHSZTSO2', 'Super Admin', NULL, 'Active', NULL, '2024-06-28 11:19:40', '2024-06-28 11:19:40'),
-(4, 'Stellar', 'stellar@gmail.com', NULL, NULL, '$2y$12$VXVG/5wQqT8Gi9sSYrJhdOIVCE9Vbx3CW5cmhFmio2QpxiFtPsWAO', 'Admin', 'Through Panel', 'Active', NULL, '2024-06-28 12:37:41', '2024-06-28 18:15:05'),
-(5, 'SHIV', 'shiv@gmail.com', NULL, NULL, '$2y$12$LP9whN19BRAtaEofh7Mic.YkrBcS3gMtTt9tmtFYu2JWfkVMkWdQi', 'Admin', 'Through Panel', 'Active', NULL, '2024-06-28 17:46:15', '2024-06-28 17:46:15'),
-(13, 'Shiv Patel', 'patelshiv2025@gmail.com', NULL, NULL, '$2y$12$elbZfcxNEDZjeUh92naRiecn.eNvQRqgo7juGtLakWHYrNaB035pW', 'Admin', 'Through Panel', 'Active', NULL, '2024-06-28 19:25:42', '2024-06-28 19:25:42');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `avatar`, `google_id`, `github_id`, `password`, `role`, `platform`, `is_active`, `otp`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Krishna harsura', 'krishnaharsura@gmail.com', NULL, NULL, '116771781532437895734', NULL, '$2y$12$FsosgMcGpbhwiXHZJ2ULSeHk2F97m6n84gAvY7GOSnoeZUZY1z4qG', 'Student', 'Google', 'Active', NULL, NULL, '2024-06-28 14:55:04', '2024-06-28 14:55:04'),
+(3, 'Horizon', 'horizon@gmail.com', NULL, NULL, NULL, NULL, '$2y$12$KCF1Fd2uqiJC1dV9/RdkQeH98EYrHy/tZixtbNYFDqhZkFHSZTSO2', 'Super Admin', NULL, 'Active', NULL, NULL, '2024-06-28 11:19:40', '2024-06-28 11:19:40'),
+(4, 'Stellar', 'stellar@gmail.com', NULL, NULL, NULL, NULL, '$2y$12$VXVG/5wQqT8Gi9sSYrJhdOIVCE9Vbx3CW5cmhFmio2QpxiFtPsWAO', 'Admin', 'Through Panel', 'Active', NULL, NULL, '2024-06-28 12:37:41', '2024-06-28 18:15:05'),
+(5, 'SHIV', 'shiv@gmail.com', NULL, NULL, NULL, NULL, '$2y$12$LP9whN19BRAtaEofh7Mic.YkrBcS3gMtTt9tmtFYu2JWfkVMkWdQi', 'Admin', 'Through Panel', 'Active', NULL, NULL, '2024-06-28 17:46:15', '2024-06-28 17:46:15'),
+(18, 'clashhorion', 'clashhorion@gmail.com', NULL, NULL, NULL, NULL, '$2y$12$Kx4GrhcJv4/fQrz18dh36OHUT1Qe5/p8RK0mbDRNzQ0YF/QkKbWu6', 'Student', 'Through Panel', 'Active', '293948', NULL, '2024-06-29 06:30:57', '2024-06-29 06:33:54'),
+(20, 'Shiv Patel', 'patelshiv2025@gmail.com', NULL, NULL, NULL, NULL, '$2y$12$eUO1ghcm2895ZD6tFKKAZetZe3n887vYDroqBuaOZ6p4qfn08TI8a', 'Faculty', 'Through Panel', 'Active', '725895', NULL, '2024-06-29 20:06:59', '2024-06-29 20:15:00'),
+(21, 'Shiv Patel', 'shivpatel3035@gmail.com', NULL, 'https://avatars.githubusercontent.com/u/101171158?v=4', NULL, '101171158', '$2y$12$oV6Wx3ds1fjJfxTA5uPR5uJgRaKok74IMBZqGukiAnf2kCHMYpLWu', 'Student', 'Github', 'Active', NULL, NULL, '2024-06-30 15:58:15', '2024-06-30 17:23:13');
 
 --
 -- Indexes for dumped tables
@@ -273,7 +279,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

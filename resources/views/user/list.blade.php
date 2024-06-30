@@ -135,9 +135,10 @@
                     <select onchange="getUsers()" id="platform" name="platform" class="form-select" data-allow-clear="true"
                         data-placeholder="Select platform">
                         <option value="">Select Platform</option>
+                        <option value="Through Panel">Through Panel</option>
                         <option value="Google">Google</option>
                         <option value="Facebook">Facebook</option>
-                        <option value="Mircrosoft">Mircrosoft</option>
+                        <option value="Github">Github</option>
                     </select>
                 </div>
                 <div class="col-md-6 user_status">
