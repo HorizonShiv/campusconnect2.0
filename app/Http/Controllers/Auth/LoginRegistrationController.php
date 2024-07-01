@@ -25,7 +25,7 @@ class LoginRegistrationController extends Controller
 
         if (!$finduser) {
             User::create([
-                'name' => $request->username,
+                'first_name' => $request->username,
                 'email' => $request->email,
                 'role' => "Student",
                 'is_active' => 'Pending',
@@ -161,7 +161,13 @@ class LoginRegistrationController extends Controller
     // google login and registration functions
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        // return Socialite::driver('google')->redirect();
+        try {
+            return Socialite::driver('google')->redirect();
+        } catch (\Exception $e) {
+            Log::error('Error during Google redirect: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to connect to Google.']);
+        }
     }
 
     public function handleGoogleCallback()
@@ -181,10 +187,11 @@ class LoginRegistrationController extends Controller
                 }
             } else {
                 $newUser = User::create([
-                    'name' => $user->name,
+                    'first_name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
                     'avatar' => $user->avatar,
+                    'email_verified_at' => date('Y-m-d H:i:s'),
                     'role' => 'Student',
                     'platform' => 'Google',
                     'is_active' => 'Pending',
@@ -195,7 +202,9 @@ class LoginRegistrationController extends Controller
                     ->withSuccess('You have successfully registered wait for the appoval!');
             }
         } catch (Exceptions $e) {
-            return redirect('auth/google');
+            // return redirect('auth/google');
+            return redirect()->route('authenticate-login')
+                ->withErrors('Something have gone wrong with Google');
         }
     }
 
@@ -203,7 +212,12 @@ class LoginRegistrationController extends Controller
     // Github login and registration functions
     public function redirectToGitHub()
     {
-        return Socialite::driver('github')->redirect();
+        try {
+            return Socialite::driver('github')->redirect();
+        } catch (\Exception $e) {
+            Log::error('Error during GitHub redirect: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to connect to GitHub.']);
+        }
     }
 
     public function handleGitHubCallback()
@@ -223,10 +237,11 @@ class LoginRegistrationController extends Controller
                 }
             } else {
                 $newUser = User::create([
-                    'name' => $user->name,
+                    'first_name' => $user->name,
                     'email' => $user->email,
                     'github_id' => $user->id,
                     'avatar' => $user->avatar,
+                    'email_verified_at' => date('Y-m-d H:i:s'),
                     'role' => 'Student',
                     'platform' => 'Github',
                     'is_active' => 'Pending',
@@ -237,7 +252,26 @@ class LoginRegistrationController extends Controller
                     ->withSuccess('You have successfully registered wait for the appoval!');
             }
         } catch (Exceptions $e) {
-            return redirect('auth/github');
+            // return redirect('auth/github');
+            return redirect()->route('authenticate-login')
+                ->withErrors('Something have gone wrong with Github');
         }
+    }
+
+    // Twitter login and registration functions
+    public function redirectToTwitter()
+    {
+        try {
+            return Socialite::driver('twitter')->redirect();
+        } catch (\Exception $e) {
+            Log::error('Error during Twitter redirect: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to connect to Twitter.']);
+        }
+    }
+
+    public function handleTwitterCallback()
+    {
+        $user = Socialite::driver('twitter')->user();
+        dd($user);
     }
 }

@@ -37,6 +37,10 @@ Route::controller(LoginRegistrationController::class)->group(function () {
     //GitHub Auth Routes
     Route::get('auth/github', 'redirectToGitHub')->name('redirectToGitHub');
     Route::get('auth/github/callback', 'handleGitHubCallback')->name('handleGitHubCallback');
+
+    //Twitter Auth Routes
+    Route::get('auth/twitter', 'redirectToTwitter')->name('redirectToTwitter');
+    Route::get('auth/twitter/callback', 'handleTwitterCallback')->name('handleTwitterCallback');
 });
 
 Route::get('/authenticate/login', [AuthLogin::class, 'login'])->name('authenticate-login');
@@ -48,6 +52,13 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
 
 
     Route::get('/users/{role}', [UserController::class, 'index'])->name('users');
+    Route::get('/users/profile/{userId}', [UserController::class, 'userProfile'])->name('users-profile');
+    Route::get('/users/security/{userId}', [UserController::class, 'userSecurity'])->name('users-security');
+    Route::get('/users/notification/{userId}', [UserController::class, 'userNotification'])->name('users-notification');
+    Route::get('/users/connection/{userId}', [UserController::class, 'userConnection'])->name('users-connection');
+    Route::put('/users/password/{userId}', [UserController::class, 'changePassword'])->name('users-password');
+
+
     Route::post('/getUsers', [UserController::class, 'getUsers'])->name('getUsers');
     Route::post('/changeUserStatus', [UserController::class, 'changeUserStatus'])->name('changeUserStatus');
     Route::resource('users', UserController::class);

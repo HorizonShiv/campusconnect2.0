@@ -346,8 +346,8 @@ class ComposerStaticInit4e017a610a1621b98c9363e5ecc3beca
         ),
         'Spatie\\Ignition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            1 => __DIR__ . '/..' . '/spatie/ignition/src',
         ),
         'Spatie\\FlareClient\\' => 
         array (
@@ -592,7 +592,7 @@ class ComposerStaticInit4e017a610a1621b98c9363e5ecc3beca
         'App\\Http\\Controllers\\Auth\\LoginRegistrationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginRegistrationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Dashboard\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/DashboardController.php',
-        'App\\Http\\Controllers\\TransferContoller' => __DIR__ . '/../..' . '/app/Http/Controllers/TransferContoller.php',
+        'App\\Http\\Controllers\\User\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/UserController.php',
         'App\\Http\\Controllers\\authenticate\\AuthLogin' => __DIR__ . '/../..' . '/app/Http/Controllers/authenticate/AuthLogin.php',
         'App\\Http\\Controllers\\layouts\\Blank' => __DIR__ . '/../..' . '/app/Http/Controllers/layouts/Blank.php',
         'App\\Http\\Controllers\\layouts\\CollapsedMenu' => __DIR__ . '/../..' . '/app/Http/Controllers/layouts/CollapsedMenu.php',
@@ -5688,6 +5688,7 @@ class ComposerStaticInit4e017a610a1621b98c9363e5ecc3beca
         'Spatie\\ErrorSolutions\\SolutionProviders\\Laravel\\ViewNotFoundSolutionProvider' => __DIR__ . '/..' . '/spatie/error-solutions/src/SolutionProviders/Laravel/ViewNotFoundSolutionProvider.php',
         'Spatie\\ErrorSolutions\\SolutionProviders\\MergeConflictSolutionProvider' => __DIR__ . '/..' . '/spatie/error-solutions/src/SolutionProviders/MergeConflictSolutionProvider.php',
         'Spatie\\ErrorSolutions\\SolutionProviders\\UndefinedPropertySolutionProvider' => __DIR__ . '/..' . '/spatie/error-solutions/src/SolutionProviders/UndefinedPropertySolutionProvider.php',
+        'Spatie\\ErrorSolutions\\Solutions\\Concerns\\IsProvidedByFlare' => __DIR__ . '/..' . '/spatie/error-solutions/src/Solutions/Concerns/IsProvidedByFlare.php',
         'Spatie\\ErrorSolutions\\Solutions\\Laravel\\GenerateAppKeySolution' => __DIR__ . '/..' . '/spatie/error-solutions/src/Solutions/Laravel/GenerateAppKeySolution.php',
         'Spatie\\ErrorSolutions\\Solutions\\Laravel\\LivewireDiscoverSolution' => __DIR__ . '/..' . '/spatie/error-solutions/src/Solutions/Laravel/LivewireDiscoverSolution.php',
         'Spatie\\ErrorSolutions\\Solutions\\Laravel\\MakeViewVariableOptionalSolution' => __DIR__ . '/..' . '/spatie/error-solutions/src/Solutions/Laravel/MakeViewVariableOptionalSolution.php',

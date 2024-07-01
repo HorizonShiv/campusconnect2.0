@@ -180,9 +180,14 @@
                     enctype="multipart/form-data" class="add-new-user pt-0" id="addNewUserForm">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label" for="add-user-fullname">Full Name</label>
-                        <input type="text" class="form-control" id="add-user-fullname" placeholder="John Doe"
-                            name="userFullname" value="{{ old('userFullname') }}" aria-label="John Doe" />
+                        <label class="form-label" for="add-user-firstname">First Name</label>
+                        <input type="text" class="form-control" id="add-user-firstname" placeholder="John"
+                            name="userFirstname" value="{{ old('userFirstname') }}" aria-label="John" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="add-user-lastname">Last Name</label>
+                        <input type="text" class="form-control" id="add-user-lastname" placeholder="Doe"
+                            name="userLastname" value="{{ old('userLastname') }}" aria-label="Doe" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="add-user-email">Email</label>
@@ -453,9 +458,9 @@
     }
 
     function checkData() {
-        var fullname = document.getElementById("add-user-fullname").value;
+        var firstname = document.getElementById("add-user-firstname").value;
         var email = document.getElementById("add-user-email").value;
-        if (fullname == "" || email == "") {
+        if (firstname == "" || email == "") {
             toastr.options.positionClass = 'toast-top-center';
             toastr.options.preventDuplicates = true;
             toastr.error('Enter the the datils');

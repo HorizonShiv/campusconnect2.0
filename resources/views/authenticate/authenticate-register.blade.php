@@ -119,6 +119,10 @@
                                 <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
                             </a> --}}
 
+                            <a href="{{ route('redirectToTwitter') }}" class="btn btn-icon btn-label-twitter me-3">
+                                <i class="tf-icons fa-brands fa-twitter fs-5"></i>
+                            </a>
+
                             <a href="{{ route('redirectToGoogle') }}" class="btn btn-icon btn-label-google-plus me-3">
                                 <i class="tf-icons fa-brands fa-google fs-5"></i>
                             </a>

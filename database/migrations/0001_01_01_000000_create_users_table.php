@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -13,15 +15,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('avatar')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('avatar')->nullable();
-            $table->enum('role', ['Super Admin', 'Admin', 'Faculty', 'Student', 'Student Department'])->default('Student');
-            $table->string('platform');
+            $table->timestamp('phone_number')->nullable();
             $table->string('google_id')->nullable();
             $table->string('github_id')->nullable();
+            $table->string('password');
+            $table->enum('role', ['Super Admin', 'Admin', 'Faculty', 'Student', 'Student Department'])->default('Student');
+            $table->string('platform');
+            $table->string('address')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('country')->nullable();
             $table->enum('is_active', ['Active', 'Inactive', 'Pending'])->default('Pending');
             $table->string('otp')->nullable();
             $table->rememberToken();
@@ -42,6 +50,17 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+        DB::table('users')->insert([
+            'first_name' => 'Stellar',
+            'last_name' => 'Nova',
+            'email' => 'info@stellarnova.in',
+            'password' => Hash::make('12345678'), // Ensure you hash the password
+            'role' => 'Super Admin',
+            'platform' => 'Through Panel',
+            'is_active' => 'Active',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
