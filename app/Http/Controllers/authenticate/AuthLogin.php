@@ -19,4 +19,10 @@ class AuthLogin extends Controller
         $pageConfigs = ['myLayout' => 'blank'];
         return view('authenticate.authenticate-register', ['pageConfigs' => $pageConfigs]);
     }
+
+    public function privacyPolicy()
+    {
+        $pageConfigs = ['myLayout' => 'blank'];
+        return view('public.privacypolicy', ['pageConfigs' => $pageConfigs]);
+    }
 }

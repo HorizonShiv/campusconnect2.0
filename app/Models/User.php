@@ -32,6 +32,7 @@ class User extends Authenticatable
         'platform',
         'google_id',
         'github_id',
+        'facebook_id',
         'is_active',
         'otp',
     ];

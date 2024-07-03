@@ -41,8 +41,14 @@ Route::controller(LoginRegistrationController::class)->group(function () {
     //Twitter Auth Routes
     Route::get('auth/twitter', 'redirectToTwitter')->name('redirectToTwitter');
     Route::get('auth/twitter/callback', 'handleTwitterCallback')->name('handleTwitterCallback');
-});
 
+    Route::get('auth/facebook', 'redirectToFacebook')->name('redirectToFacebook');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback')->name('handleFacebookCallback');
+    Route::get('auth/facebook/delete/callback', 'handleFacebookDeleteCallback')->name('handleFacebookDeleteCallback');
+
+    Route::get('privacyPolicy', 'privacyPolicy')->name('privacyPolicy');
+});
+Route::get('/privacy-policy', [AuthLogin::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/authenticate/login', [AuthLogin::class, 'login'])->name('authenticate-login');
 Route::get('/authenticate/register', [AuthLogin::class, 'register'])->name('authenticate-register');
 

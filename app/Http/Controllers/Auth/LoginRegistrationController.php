@@ -201,6 +201,10 @@ class LoginRegistrationController extends Controller
                 return redirect()->route('authenticate-login')
                     ->withSuccess('You have successfully registered wait for the appoval!');
             }
+        } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
+            // Handle invalid state exception
+            return redirect()->route('authenticate-login')
+                ->withErrors('Something have gone wrong with Google');
         } catch (Exceptions $e) {
             // return redirect('auth/google');
             return redirect()->route('authenticate-login')
@@ -251,6 +255,10 @@ class LoginRegistrationController extends Controller
                 return redirect()->route('authenticate-login')
                     ->withSuccess('You have successfully registered wait for the appoval!');
             }
+        } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
+            // Handle invalid state exception
+            return redirect()->route('authenticate-login')
+                ->withErrors('Something have gone wrong with Github');
         } catch (Exceptions $e) {
             // return redirect('auth/github');
             return redirect()->route('authenticate-login')
@@ -273,5 +281,63 @@ class LoginRegistrationController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
         dd($user);
+    }
+
+
+    // FaceBook login and registration functions
+    public function redirectToFacebook()
+    {
+        try {
+            return Socialite::driver('facebook')->redirect();
+        } catch (\Exception $e) {
+            Log::error('Error during Twitter redirect: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to connect to Facebook.']);
+        }
+    }
+
+    public function handleFacebookCallback()
+    {
+        try {
+            $user = Socialite::driver('facebook')->user();
+            $finduser = User::where('facebook_id', $user->id)->orWhere('email', $user->email)->first();
+
+            if ($finduser) {
+                if ($finduser->is_active == 'Active') {
+                    Auth::login($finduser);
+                    return redirect()->route('dashboard-blank')
+                        ->withSuccess('You have successfully Logged!!');
+                } else {
+                    return redirect()->route('authenticate-login')
+                        ->withErrors('You are still not approved as a user!!');
+                }
+            } else {
+                $newUser = User::create([
+                    'first_name' => $user->name,
+                    'email' => $user->email,
+                    'facebook_id' => $user->id,
+                    'avatar' => $user->avatar,
+                    'email_verified_at' => date('Y-m-d H:i:s'),
+                    'role' => 'Student',
+                    'platform' => 'Facebook',
+                    'is_active' => 'Pending',
+                    'password' => encrypt('my-facebook')
+                ]);
+
+                return redirect()->route('authenticate-login')
+                    ->withSuccess('You have successfully registered wait for the appoval!');
+            }
+        } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
+            // Handle invalid state exception
+            return redirect()->route('authenticate-login')
+                ->withErrors('Something have gone wrong with Facebook');
+        } catch (Exceptions $e) {
+            // return redirect('auth/github');
+            return redirect()->route('authenticate-login')
+                ->withErrors('Something have gone wrong with Facebook');
+        }
+    }
+
+    public function handleFacebookDeleteCallback()
+    {
     }
 }
